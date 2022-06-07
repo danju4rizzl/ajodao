@@ -14,7 +14,7 @@
     if (req.status === 200) {
       members.innerText = res.numberOfMembers;
       proposals.innerText = res.totalProposalCount;
-      funds.innerText = res.totalDaoFunds;
+      funds.innerText = res.totalDaoFunds.toFixed(2);
     }
   } catch (error) {
     console.log(error);
