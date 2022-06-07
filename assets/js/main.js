@@ -9,7 +9,6 @@
       { headers: { 'Content-type': 'application/json' } }
     );
     const res = await req.json();
-    console.log(res);
 
     if (req.status === 200) {
       members.innerText = res.numberOfMembers;
