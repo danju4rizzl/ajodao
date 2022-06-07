@@ -1,3 +1,26 @@
+(async function getDaoData() {
+  const members = document.getElementById('daoMembers');
+  const proposals = document.getElementById('daoProposals');
+  const funds = document.getElementById('daoFunds');
+
+  try {
+    const req = await fetch(
+      'https://api.app.astrodao.com/api/v1/daos/ajodao.sputnik-dao.near',
+      { headers: { 'Content-type': 'application/json' } }
+    );
+    const res = await req.json();
+    console.log(res);
+
+    if (req.status === 200) {
+      members.innerText = res.numberOfMembers;
+      proposals.innerText = res.totalProposalCount;
+      funds.innerText = res.totalDaoFunds;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+})();
+
 (function ($) {
   ('user strict');
   // Preloader Js
@@ -766,31 +789,8 @@
   });
 
   // counter
-  $('.counter').countUp({
-    time: 1500,
-    delay: 10,
-  });
+  // $('.counter').countUp({
+  //   time: 1500,
+  //   delay: 9,
+  // });
 })(jQuery);
-
-async function getDaoData() {
-  const members = document.getElementById('daoMembers');
-  const proposals = document.getElementById('daoProposals');
-  const funds = document.getElementById('daoFunds');
-
-  try {
-    const req = await fetch(
-      'https://api.app.astrodao.com/api/v1/daos/ajodao.sputnik-dao.near',
-      { headers: { 'Content-type': 'application/json' } }
-    );
-    const res = await req.json();
-
-    if (req.status === 200) {
-      members.innerText = res.numberOfMembers;
-      proposals.innerText = res.totalProposalCount;
-      funds.innerText = res.totalDaoFunds;
-    }
-  } catch (error) {
-    console.log(error);
-  }
-}
-getDaoData();
